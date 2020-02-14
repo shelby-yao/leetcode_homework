@@ -18,6 +18,41 @@ import Foundation
          self.next = nil
      }
  }
+func mmm(_ ll1: ListNode?, _ ll2: ListNode?) -> ListNode? {
+    var l1 = ll1
+    var l2 = ll2
+    let head: ListNode? = ListNode(-1)
+    var pre: ListNode? = head
+    while l1 != nil && l2 != nil {
+        if l1!.val > l2!.val {
+            pre?.next = l2
+            l2 = l2?.next
+        } else {
+            pre?.next = l1
+            l1 = l1?.next
+        }
+        pre = pre?.next
+    }
+    pre?.next = l1 == nil ?  l2 : l1
+    return head?.next
+}
+func mmmm(_ ll1: ListNode?, _ ll2: ListNode?) -> ListNode? {
+    if ll1 == nil {
+        return ll2
+    }
+    if ll2 == nil {
+        return ll1
+    }
+    var l1 = ll1
+    var l2 = ll2
+    if l1!.val > l2!.val {
+        l2?.next = mmmm(l1, l2?.next)
+        return l2
+    } else {
+        l1?.next = mmmm(l1?.next, l2)
+        return l1
+    }
+}
 
 
     func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
@@ -60,16 +95,16 @@ func bubbleSort(_ nums: inout [ListNode]) {
     }
 
 
-let l10 = ListNode(2)
-//let l11 = ListNode(2)
-//let l12 = ListNode(4)
-//l10.next = l11
-//l11.next = l12
+var l10 = ListNode(1)
+var l11 = ListNode(2)
+var l12 = ListNode(4)
+l10.next = l11
+l11.next = l12
 
-let l20 = ListNode(1)
-//let l21 = ListNode(3)
-//let l22 = ListNode(4)
-//l20.next = l21
-//l21.next = l22
-let pp = mergeTwoLists(l10, l20)
+var l20 = ListNode(1)
+var l21 = ListNode(3)
+var l22 = ListNode(4)
+l20.next = l21
+l21.next = l22
+let pp = mmmm(l10, l20)
 pp
