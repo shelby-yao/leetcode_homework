@@ -14,20 +14,26 @@ import Foundation
 
 
     func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
-        var nums2 = nums2
-        for i in 0 ..< m {
-            for j in 0 ..< n {
-                if nums2[j] < nums1[i] {
-                    let temp = nums1[i]
-                    nums1[i] = nums2[j]
-                    nums2[j] = temp
-                }
-            }
-        }
-        bubbleSort2(&nums2)
-        for k in m ..< nums1.count {
-            nums1[k] = nums2[(k - m)]
-        }
+//        var nums2 = nums2
+//        nums1.removeLast(nums1.count - m)
+//        nums1.append(contentsOf: nums2)
+//        nums1.replaceSubrange(Range(NSRange(location: m, length: nums1.count - m))!, with: nums2)
+        nums1.replaceSubrange(m ..< nums1.count, with: nums2)
+        nums1.sort()
+//        bubbleSort2(&nums1)
+//        for i in 0 ..< m {
+//            for j in 0 ..< n {
+//                if nums2[j] < nums1[i] {
+//                    let temp = nums1[i]
+//                    nums1[i] = nums2[j]
+//                    nums2[j] = temp
+//                }
+//            }
+//        }
+//        bubbleSort2(&nums2)
+//        for k in m ..< nums1.count {
+//            nums1[k] = nums2[(k - m)]
+//        }
         
     }
 
