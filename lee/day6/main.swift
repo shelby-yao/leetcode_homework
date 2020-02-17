@@ -24,6 +24,7 @@ func trap(_ height: [Int]) -> Int {
     for i in 1 ..< height.count - 1 {
         count += (min(leftMaxList[i], rightMaxList[i]) - height[i])
     }
+        
     return count
 }
 
